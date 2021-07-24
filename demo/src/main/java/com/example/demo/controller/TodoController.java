@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 import com.example.demo.entity.Todo;
 import com.example.demo.model.ResponseErrorModel;
@@ -35,7 +32,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody TodoForm todoForm) {
+    public ResponseEntity<?> create(@RequestBody TodoForm todoForm) {
         try {
             return new ResponseEntity<>(service.create(todoForm), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -44,7 +41,7 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable long id, @RequestBody TodoForm todoForm) {
+    public ResponseEntity<?> update(@PathVariable long id, @RequestBody TodoForm todoForm) {
         try {
             return new ResponseEntity<>(service.update(id, todoForm), HttpStatus.ACCEPTED);
         } catch (Exception e) {
@@ -53,7 +50,7 @@ public class TodoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getOne(@PathVariable long id) {
+    public ResponseEntity<?> getOne(@PathVariable long id) {
         try {
             Todo todo = service.findById(id);
             if (todo != null)
@@ -65,7 +62,7 @@ public class TodoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity remove(@PathVariable long id) {
+    public ResponseEntity<?> remove(@PathVariable long id) {
         try {
             return new ResponseEntity<>(service.remove(id), HttpStatus.NO_CONTENT);
         } catch (Exception e) {
