@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.example.demo.entity.Todo;
-import com.example.demo.model.TodoForm;
+import com.example.demo.http.request.TodoRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class TodoService {
         return todos;
     }
 
-    public Todo create(TodoForm todoForm) {
+    public Todo create(TodoRequest todoForm) {
         Todo todo = new Todo(counter.incrementAndGet(), todoForm.getTitle(), false);
         todos.add(todo);
         return todo;
@@ -39,7 +39,7 @@ public class TodoService {
         return null;
     }
 
-    public Todo update(long id, TodoForm todoForm) {
+    public Todo update(long id, TodoRequest todoForm) {
         Todo todo = this.findById(id);
         if (todo.getTitle() != null) {
             if (todoForm.getTitle() != null)

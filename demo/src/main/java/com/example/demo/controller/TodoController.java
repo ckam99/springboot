@@ -3,8 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 
 import com.example.demo.entity.Todo;
-import com.example.demo.model.ResponseErrorModel;
-import com.example.demo.model.TodoForm;
+import com.example.demo.http.request.TodoRequest;
+import com.example.demo.http.response.ErrorResponse;
 import com.example.demo.services.TodoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,20 +32,20 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody TodoForm todoForm) {
+    public ResponseEntity<?> create(@RequestBody TodoRequest todoForm) {
         try {
             return new ResponseEntity<>(service.create(todoForm), HttpStatus.CREATED);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new ResponseErrorModel(e.getMessage()));
+            return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable long id, @RequestBody TodoForm todoForm) {
+    public ResponseEntity<?> update(@PathVariable long id, @RequestBody TodoRequest todoForm) {
         try {
             return new ResponseEntity<>(service.update(id, todoForm), HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new ResponseErrorModel(e.getMessage()));
+            return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
         }
     }
 
@@ -55,9 +55,9 @@ public class TodoController {
             Todo todo = service.findById(id);
             if (todo != null)
                 return ResponseEntity.ok(todo);
-            return new ResponseEntity<>(new ResponseErrorModel("Todo not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ErrorResponse("Todo not found"), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new ResponseErrorModel(e.getMessage()));
+            return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
         }
     }
 
@@ -66,7 +66,7 @@ public class TodoController {
         try {
             return new ResponseEntity<>(service.remove(id), HttpStatus.NO_CONTENT);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new ResponseErrorModel(e.getMessage()));
+            return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
         }
     }
 

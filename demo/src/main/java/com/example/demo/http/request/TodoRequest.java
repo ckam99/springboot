@@ -1,11 +1,10 @@
-package com.example.demo.model;
+package com.example.demo.http.request;
 
-public class TodoForm {
-
+public class TodoRequest {
     private String title;
     private Boolean completed;
 
-    public TodoForm() {
+    public TodoRequest() {
 
     }
 
@@ -24,5 +23,4 @@ public class TodoForm {
     public Boolean getCompleted() {
         return this.completed;
     }
-
 }
