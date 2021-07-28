@@ -1,8 +1,13 @@
 
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
   datasource:
     url: jdbc:postgresql://localhost:54321/springboot
     username: postgres
     password: root
   flyway:
     table: migrations
+    locations:
+      - classpath:db/migration
