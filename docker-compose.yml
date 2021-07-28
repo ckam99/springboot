@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:12
+    environment:
+      - POSTGRES_DB=springboot
+      - POSTGRES_PASSWORD=demo
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+    ports: 
+      - 54322:5432
+  app:
+    build: .
+    environment: 
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/springboot
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=demo
+    ports:
+      - 90:8080
+    depends_on: 
+      - db
+volumes: 
+  db-data:
