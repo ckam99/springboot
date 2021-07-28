@@ -1,9 +1,8 @@
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:54321/springboot
     username: postgres
     password: root
   flyway:
-    locations:
-    - classpath:database/migrations
     table: migrations
