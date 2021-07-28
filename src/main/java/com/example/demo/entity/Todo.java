@@ -58,4 +58,10 @@ public class Todo {
         this.user = user;
     }
 
+    @Override
+    public String toString() {
+        return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + ", completed='" + isCompleted() + "'"
+                + ", user='" + getUser() + "'" + "}";
+    }
+
 }

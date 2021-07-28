@@ -21,11 +21,8 @@ public class UserService {
         return repository.findAll();
     }
 
-    public User findById(long id) {
-        User user = repository.findById(id);
-        if (user != null)
-            return user;
-        throw new EntityNotFoundException("User with ID does not exists!");
+    public User findById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with ID does not exists!"));
     }
 
     public User findByEmail(String email) {
