@@ -27,6 +27,7 @@ public class StudentResponse {
     public StudentResponse(Student student) {
         this.id = student.getId();
         this.name = student.getName();
+        this.subjects.addAll(student.getSubjects());
     }
 
 }

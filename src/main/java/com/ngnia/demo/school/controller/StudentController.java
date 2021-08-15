@@ -25,8 +25,7 @@ public class StudentController {
 
     @GetMapping
     public ResponseEntity<?> getStudents() {
-        return new ResponseEntity<>(service.getAll().stream().map(student -> new StudentResponse(student)).toList(),
-                HttpStatus.OK);
+        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
     @PostMapping

@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -21,7 +22,7 @@ public class Teacher {
     private Long id;
     private String name;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("teacher")
     @OneToMany(mappedBy = "teacher")
     private Set<Subject> subjects;
 

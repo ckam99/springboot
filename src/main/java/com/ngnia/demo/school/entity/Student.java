@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "students")
@@ -20,7 +21,7 @@ public class Student {
     private Long id;
     private String name;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("enrolledStudents")
     @ManyToMany(mappedBy = "enrolledStudents")
     private Set<Subject> subjects = new HashSet<>();
 

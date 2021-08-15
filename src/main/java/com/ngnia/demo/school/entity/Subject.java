@@ -14,8 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "subjects")
@@ -29,10 +28,12 @@ public class Subject {
 
     @ManyToMany
     @JoinTable(name = "enrolled_students", joinColumns = @JoinColumn(name = "subject_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+    @JsonIgnoreProperties("subjects")
     private Set<Student> enrolledStudents = new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id", referencedColumnName = "id")
+    @JsonIgnoreProperties("subjects")
     private Teacher teacher;
 
     public Long getId() {
